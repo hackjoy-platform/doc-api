@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>API Hack.joy</title>
+
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+
+    <!-- CSS Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Icons bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="col-auto col-md-3 col-xl-2 bg-dark" id="sidebar">
+            <div class="d-flex flex-column align-items-start px-3 pt-2 text-white min-vh-100">
+                <div class="d-flex flex-row" id="topMenu">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5 d-sm-inline">Menu</span>
+                    </a>
+                    <button type="button" id="sidebarCollapse1" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+                <ul class="nav nav-pills flex-column mb-auto mb-0 align-items-start" id="menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link align-middle px-0">
+                            <span class="ms-1 d-sm-inline">Introdução</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="alunos.html" class="nav-link align-middle px-0">
+                            <span class="ms-1 d-sm-inline">Alunos</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Page content -->
+        <div class="container-fluid">
+            <div class="row mb-4 mt-4">
+                <div class="col">
+                    <div class="shadow p-3 mb-5 bg-white rounded">
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" id="sidebarCollapse" class="navbar-btn active">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+                        <div class="container-fluid">
+                            <div>
+                                <h1>Entidade Alunos (Student)</h1>
+
+                                <p>
+                                    Antes de falar detalhadamente sobre Alunos, é necessário entender que no sistema há três tipos de usuários: Alunos, Professores e Administradores. Todos eles possuem dados em comum, portanto no banco de dados os referenciamos com a mesma entidade
+                                </p>
+
+                                <p class="text-center">
+                                    <img src="images/entidade_user.png">
+                                </p>
+
+                                <p>
+                                    Para identificarmos que um usuário é um Aluno, deve se olhar o campo <i>entity</i> que armazena o tipo de usuário em forma de string, no caso do aluno, este campo deve estar como <i>student</i>, e é com esse nome que
+                                    irei tratá-lo a frente.
+                                </p>
+
+                                <p class="text-center">
+                                    <img src="images/exemplo_registro_user_student.png">
+                                </p>
+
+                                <p>
+                                    O problema é que não basta que somente haja uma entidade (no caso user) para representar os três usuários ao mesmo tempo. É fato que eles possuem muitos dados em comum, e é por isso que user é usado como uma entidade principal, porém eles vão ter dados
+                                    específicos. Por exemplo, um professor vai ter dados sobre sua descrição, <i>student</i> vai ter dados como seu Elo. Esses dados não podem ser colocados todos na mesma entidade (user),
+                                    portanto há uma segunda entidade representativa para os usuários. No caso do <i>student</i>, se usa esta entidade para especificá-lo:
+                                </p>
+
+                                <p class="text-center">
+                                    <img src="images/entidade_student.png">
+                                </p>
+
+                                <h3>Operações HTTP</h3>
+
+                                <p>
+                                    A URL para acessar o recurso (entidade) <i>student</i> é: <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students</a>
+                                </p>
+
+                                <div>
+                                    <h4>Novo student</h4><br>
+                                    <b>Método: POST</b><br>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/new</a>
+                                    <p>Para se cadastrar um novo <i>student</i> é necessário informar os seguintes dados: </p>
+                                    <ul>
+                                        <li><b>name:</b> Nome do <i>student</i></li>
+                                        <li><b>birth_date:</b> Data de nascimento</li>
+                                        <li><b>nationality:</b> País de nacionalidade</li>
+                                        <li><b>document:</b> Documento. Se o país de nacionalidade for o Brasil, o documento exigido é CPF, caso contrário, pode ser inserido qualquer outro tipo de documento que identifique a pessoa.</li>
+                                        <li><b>gender:</b> Genêro com o qual se identifica. Portanto, há 3 opções que podem ser colocadas: Feminino, Masculino ou Outra</li>
+                                        <li><b>email:</b> E-mail. Este e-mail será usado como chave única dentro da plataforma, logo não haverá mais de um usuário com o mesmo email.</li>
+                                        <li><b>password:</b> Senha</li>
+                                        <li><b>elo:</b> Este dado é o Elo do <i>student</i>. Ele não precisa ser informado, pois sempre que um <i>student</i> se cadastrar seu Elo automaticamente será 0. Só está aqui para fins de exemplo.</li>
+                                    </ul>
+                                    <p>Exemplo: </p>
+
+                                    <p>
+                                        <img src="images/novo_student.png">
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h4>Autenticar <i>student</i></h4><br>
+                                    <b>Método: POST</b><br>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/login</a>
+                                    <p>Para que um <i>student</i> consiga fazer login e ter acesso aos serviços do sistema, deverá ser informado os seguintes dados: </p>
+                                    <ul>
+                                        <li><b>email:</b> E-mail cadastrado</li>
+                                        <li><b>password:</b> Senha cadastrada</li>
+                                    </ul>
+                                    <p>Ao enviar a requisição, será verificado se os dados batem e se o status do usuário está como "Active" no banco de dados. Caso seja validado corretamente, o sistema irá retornar um token. Este token deverá ser enviado
+                                        no header de requisições que necessitem de autenticação.</p>
+                                    <p>Exemplo: </p>
+
+                                    <p>
+                                        <img src="images/exemplo_login_student.png">
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h4>Listar</h4>
+                                    <b>Método: GET</b>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students</a>
+                                    <p>Retorna um JSON com todos os alunos cadastrados</p>
+                                </div>
+
+                                <div>
+                                    <h4>Encontrar <i>student</i> por id</h4>
+                                    <b>Método: GET</b>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/{id}</a>
+                                    <p>Retorna o <i>student</i> que possui o id informado por parâmetro.</p>
+                                    <p><b>Importante</b>: Todas as rotas que exigerem id, será passado o id da entidade <i>student</i> e não dá entidade <i>user</i>.</p>
+                                </div>
+
+                                <div>
+                                    <h4>Excluir <i>student</i> por id</h4>
+                                    <b>Método: DELETE</b>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/{id}</a>
+                                    <p>Delete o <i>student</i> que possui o id informado por parâmetro.</p>
+                                </div>
+
+                                <div>
+                                    <h4>Atualizar <i>student</i> por id</h4>
+                                    <b>Método: PUT</b>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/{id}</a>
+                                    <p>Altera a entidade user e sua entidade <i>student</i> que possui o id informado por parâmetro.</p>
+                                    <p>Para se atualizar um <i>student</i> é necessário informar os seguintes dados: </p>
+                                    <ul>
+                                        <li><b>name:</b> Nome do <i>student</i></li>
+                                        <li><b>birth_date:</b> Data de nascimento</li>
+                                        <li><b>nationality:</b> País de nacionalidade</li>
+                                        <li><b>document:</b> Documento. Se o país de nacionalidade for o Brasil, o documento exigido é CPF, caso contrário, pode ser inserido qualquer outro tipo de documento que identifique a pessoa.</li>
+                                        <li><b>gender:</b> Genêro com o qual se identifica. Portanto, há 3 opções que podem ser colocadas: Feminino, Masculino ou Outra</li>
+                                        <li><b>email:</b> E-mail. Este e-mail será usado como chave única dentro da plataforma, logo não haverá mais de um usuário com o mesmo email.</li>
+                                    </ul>
+                                    <p>Exemplo:</p>
+                                </div>
+
+                                <p>
+                                    <img src="images/exemplo_put_student.png" />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- Bootstrap JS files CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- My JS files -->
+    <script src="script/script.js" defer></script>
+</body>
+
+</html>
