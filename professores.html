@@ -75,10 +75,10 @@
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="container-fluid">
                             <div>
-                                <h1>Entidade Alunos (Student)</h1>
+                                <h1>Entidade Professores (Instructors)</h1>
 
                                 <p>
-                                    Antes de falar detalhadamente sobre Alunos, é necessário entender que no sistema há três tipos de usuários: Alunos, Professores e Administradores. Todos eles possuem dados em comum, portanto no banco de dados os referenciamos com a mesma entidade
+                                    Assim como Students (Alunos), os professores tem como base a entidade User
                                 </p>
 
                                 <p class="text-center">
@@ -86,57 +86,55 @@
                                 </p>
 
                                 <p>
-                                    Para identificarmos que um usuário é um Aluno, deve se olhar o campo <i>entity</i> que armazena o tipo de usuário em forma de string, no caso do aluno, este campo deve estar como <i>student</i>, e é com esse nome que
+                                    Para identificarmos que um usuário é um professor, deve se olhar o campo <i>entity</i> que armazena o tipo de usuário em forma de string, no caso do professor, este campo deve estar como <i>instructor</i>, e é com esse nome que
                                     irei tratá-lo a frente.
                                 </p>
 
                                 <p class="text-center">
-                                    <img src="images/exemplo_registro_user_student.png">
+                                    <img src="images/exemplo_registro_user_instructor.png">
                                 </p>
 
                                 <p>
-                                    O problema é que não basta que somente haja uma entidade (no caso user) para representar os três usuários ao mesmo tempo. É fato que eles possuem muitos dados em comum, e é por isso que user é usado como uma entidade principal, porém eles vão ter dados
-                                    específicos. Por exemplo, um professor vai ter dados sobre sua descrição, <i>student</i> vai ter dados como seu Elo. Esses dados não podem ser colocados todos na mesma entidade (user),
-                                    portanto há uma segunda entidade representativa para os usuários. No caso do <i>student</i>, se usa esta entidade para especificá-lo:
+                                    Portanto, Instructor é representado através da seguinte entidade:
                                 </p>
 
                                 <p class="text-center">
-                                    <img src="images/entidade_student.png">
+                                    <img src="images/entidade_instructor.png">
                                 </p>
 
                                 <h3>Operações HTTP</h3>
 
                                 <p>
-                                    A URL para acessar o recurso (entidade) <i>student</i> é: <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students</a>
+                                    A URL para acessar o recurso (entidade) <i>instructor</i> é: <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/instructors</a>
                                 </p>
 
                                 <div>
-                                    <h4>Novo student</h4><br>
+                                    <h4>Novo instructor</h4><br>
                                     <b>Método: POST</b><br>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/new</a>
-                                    <p>Para se cadastrar um novo <i>student</i> é necessário informar os seguintes dados: </p>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/instructors/new</a>
+                                    <p>Para se cadastrar um novo <i>instructor</i> é necessário informar os seguintes dados: </p>
                                     <ul>
-                                        <li><b>name:</b> Nome do <i>student</i></li>
+                                        <li><b>name:</b> Nome do <i>instructor</i></li>
                                         <li><b>birth_date:</b> Data de nascimento</li>
                                         <li><b>nationality:</b> País de nacionalidade</li>
                                         <li><b>document:</b> Documento. Se o país de nacionalidade for o Brasil, o documento exigido é CPF, caso contrário, pode ser inserido qualquer outro tipo de documento que identifique a pessoa.</li>
                                         <li><b>gender:</b> Genêro com o qual se identifica. Portanto, há 3 opções que podem ser colocadas: Feminino, Masculino ou Outra</li>
                                         <li><b>email:</b> E-mail. Este e-mail será usado como chave única dentro da plataforma, logo não haverá mais de um usuário com o mesmo email.</li>
                                         <li><b>password:</b> Senha</li>
-                                        <li><b>elo:</b> Este dado é o Elo do <i>student</i>. Ele não precisa ser informado, pois sempre que um <i>student</i> se cadastrar seu Elo automaticamente será 0. Só está aqui para fins de exemplo.</li>
+                                        <li><b>about:</b> Este dado é a descrição do <i>instructor</i> que está sendo cadastrado.</li>
                                     </ul>
                                     <p>Exemplo: </p>
 
                                     <p>
-                                        <img src="images/novo_student.png">
+                                        <img src="images/novo_instructor.png">
                                     </p>
                                 </div>
 
                                 <div>
-                                    <h4>Autenticar <i>student</i></h4><br>
+                                    <h4>Autenticar <i>instructor</i></h4><br>
                                     <b>Método: POST</b><br>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/login</a>
-                                    <p>Para que um <i>student</i> consiga fazer login e ter acesso aos serviços do sistema, deverá ser informado os seguintes dados: </p>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/instructors/login</a>
+                                    <p>Para que um <i>instructor</i> consiga fazer login e ter acesso aos serviços do sistema, deverá ser informado os seguintes dados: </p>
                                     <ul>
                                         <li><b>email:</b> E-mail cadastrado</li>
                                         <li><b>password:</b> Senha cadastrada</li>
@@ -146,51 +144,52 @@
                                     <p>Exemplo: </p>
 
                                     <p>
-                                        <img src="images/exemplo_login_student.png">
+                                        <img src="images/exemplo_login_instructor.png">
                                     </p>
                                 </div>
 
                                 <div>
                                     <h4>Listar</h4>
                                     <b>Método: GET</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students</a>
-                                    <p>Retorna um JSON com todos os alunos cadastrados</p>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/instructors</a>
+                                    <p>Retorna um JSON com todos os professores cadastrados</p>
                                 </div>
 
                                 <div>
-                                    <h4>Encontrar <i>student</i> por id</h4>
+                                    <h4>Encontrar <i>instructor</i> por id</h4>
                                     <b>Método: GET</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/{id}</a>
-                                    <p>Retorna o <i>student</i> que possui o id informado por parâmetro.</p>
-                                    <p><b>Importante</b>: Todas as rotas que exigerem id, será passado o id da entidade <i>student</i> e não dá entidade <i>user</i>.</p>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/instructors/{id}</a>
+                                    <p>Retorna o <i>instructor</i> que possui o id informado por parâmetro.</p>
+                                    <p><b>Importante</b>: Todas as rotas que exigerem id, será passado o id da entidade <i>instructor</i> e não dá entidade <i>user</i>.</p>
                                 </div>
 
                                 <div>
-                                    <h4>Excluir <i>student</i> por id</h4>
+                                    <h4>Excluir <i>instructor</i> por id</h4>
                                     <b>Método: DELETE</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/{id}</a>
-                                    <p>Delete o <i>student</i> que possui o id informado por parâmetro.</p>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/instructors/{id}</a>
+                                    <p>Delete o <i>instructor</i> que possui o id informado por parâmetro.</p>
                                 </div>
 
                                 <div>
-                                    <h4>Atualizar <i>student</i> por id</h4>
+                                    <h4>Atualizar <i>instructor</i> por id</h4>
                                     <b>Método: PUT</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/students/{id}</a>
-                                    <p>Altera a entidade user e sua entidade <i>student</i> que possui o id informado por parâmetro.</p>
-                                    <p>Para se atualizar um <i>student</i> é necessário informar os seguintes dados: </p>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/instructors/{id}</a>
+                                    <p>Altera a entidade user e sua entidade <i>instructor</i> que possui o id informado por parâmetro.</p>
+                                    <p>Para se atualizar um <i>instructor</i> é necessário informar os seguintes dados: </p>
                                     <ul>
-                                        <li><b>name:</b> Nome do <i>student</i></li>
+                                        <li><b>name:</b> Nome do <i>instructor</i></li>
                                         <li><b>birth_date:</b> Data de nascimento</li>
                                         <li><b>nationality:</b> País de nacionalidade</li>
                                         <li><b>document:</b> Documento. Se o país de nacionalidade for o Brasil, o documento exigido é CPF, caso contrário, pode ser inserido qualquer outro tipo de documento que identifique a pessoa.</li>
                                         <li><b>gender:</b> Genêro com o qual se identifica. Portanto, há 3 opções que podem ser colocadas: Feminino, Masculino ou Outra</li>
                                         <li><b>email:</b> E-mail. Este e-mail será usado como chave única dentro da plataforma, logo não haverá mais de um usuário com o mesmo email.</li>
+                                        <li><b>about:</b> Este dado é a descrição do <i>instructor</i> que está sendo alterado.</li>
                                     </ul>
                                     <p>Exemplo:</p>
                                 </div>
 
                                 <p>
-                                    <img src="images/exemplo_put_student.png" />
+                                    <img src="images/exemplo_put_instructor.png" />
                                 </p>
                             </div>
                         </div>
