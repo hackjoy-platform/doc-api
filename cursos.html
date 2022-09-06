@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -85,22 +85,72 @@
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="container-fluid">
                             <div>
-                                <h1>Introdução à API da plataforma Hack.joy</h1>
+                                <h1>Entidade Cursos (Courses)</h1>
 
                                 <p>
-                                    API é o acrônimo de application programming interface, ou seja, a especificação da interface para integração entre sistemas. Nesta documentação você irá encontrar todas as informações necessárias para consumir os serviços da plataforma.
-                                </p>
-                                <p>
-                                    O objetivo da API é oferecer a possibilidade de estender as funcionalidades básicas da nossa plataforma.
+                                    Esta entidade irá representar os cursos cadastrados no sistema.
                                 </p>
 
-                                <h3>Especificações técnicas</h3>
+                                <p class="text-center">
+                                    <img src="images/entidade_course.png">
+                                </p>
 
-                                <h3>Formato</h3>
+                                <h3>Operações HTTP</h3>
 
                                 <p>
-                                    A API Hack.joy é um web service REST-compliant, ou seja, além dos métodos tradicionais POST e GET, você também verá aqui operações que utilizam os métodos PUT e DELETE. O retorno das requisições é realizado apenas no formato JSON, sempre acompanhado do
-                                    código HTTP apropriado.
+                                    A URL para acessar o recurso (entidade) <i>course</i> é: <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/courses</a>
+                                </p>
+
+                                <div>
+                                    <h4>Novo curso</h4><br>
+                                    <b>Método: POST</b><br>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/courses/new</a>
+                                    <p>Para se cadastrar um novo curso é necessário informar os seguintes dados: </p>
+                                    <ul>
+                                        <li><b>id_certificate:</b> Id do certificado que o curso utilizará.</li>
+                                        <li><b>name:</b> Nome do certificado.</li>
+                                        <li><b>about:</b> Sobre o curso.</li>
+                                        <li><b>description:</b> Descrição do curso.</li>
+                                        <li><b>image:</b> Imagem do curso.</li>
+                                    </ul>
+                                    <p>Exemplo: </p>
+
+                                    <p>
+                                        <img src="images/novo_course.png">
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h4>Listar</h4>
+                                    <b>Método: GET</b>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/courses</a>
+                                    <p>Retorna um JSON com todos os cursos cadastrados</p>
+                                </div>
+
+                                <div>
+                                    <h4>Encontrar <i>curso</i> por id</h4>
+                                    <b>Método: GET</b>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/courses/{id}</a>
+                                    <p>Retorna o cursos que possui o id informado por parâmetro.</p>
+                                </div>
+
+                                <div>
+                                    <h4>Atualizar curso por id</h4>
+                                    <b>Método: PUT</b>
+                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/courses/{id}</a>
+                                    <p>Para se atualizar um curso é necessário informar os seguintes dados: </p>
+                                    <ul>
+                                        <li><b>id_certificate:</b> Id do certificado que o curso utilizará.</li>
+                                        <li><b>name:</b> Nome do certificado.</li>
+                                        <li><b>about:</b> Sobre o curso.</li>
+                                        <li><b>description:</b> Descrição do curso.</li>
+                                        <li><b>image:</b> Imagem do curso.</li>
+                                    </ul>
+                                    <p>Exemplo:</p>
+                                </div>
+
+                                <p>
+                                    <img src="images/exemplo_put_course.png" />
                                 </p>
                             </div>
                         </div>
