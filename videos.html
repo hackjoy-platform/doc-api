@@ -11,8 +11,10 @@
     <link rel="stylesheet" type="text/css" href="style/style.css">
 
     <!-- CSS Bootstrap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Icons bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
@@ -23,7 +25,8 @@
         <div class="col-auto col-md-3 col-xl-2 bg-dark" id="sidebar">
             <div class="d-flex flex-column align-items-start px-3 pt-2 text-white min-vh-100">
                 <div class="d-flex flex-row" id="topMenu">
-                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <a href="/"
+                        class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <span class="fs-5 d-sm-inline">Menu</span>
                     </a>
                     <button type="button" id="sidebarCollapse1" class="navbar-btn">
@@ -95,68 +98,88 @@
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="container-fluid">
                             <div>
-                                <h1>Entidade Certificados (Certificates)</h1>
+                                <h1>Entidade Vídeo (Video)</h1>
 
                                 <p>
-                                    Esta entidade irá representar os certificados cadastrados no sistema.
+                                    Esta entidade irá representar os vídeos dos cursos.
+                                </p>
+
+                                <p>
+                                    Um curso possui N conteúdos, os conteúdos possui tipos, e a entidade Vídeo é um tipo
+                                    de conteúdo.
                                 </p>
 
                                 <p class="text-center">
-                                    <img src="images/entidade_certificate.png">
+                                    <img src="images/entidade_video.png">
                                 </p>
 
                                 <h3>Operações HTTP</h3>
 
                                 <p>
-                                    A URL para acessar o recurso (entidade) <i>certificate</i> é: <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates</a>
+                                    A URL para acessar o recurso (entidade) <i>video</i> é: <a href="#!"
+                                        class="text-decoration-none">https://hackjoy-api.herokuapp.com/videos/new</a>
                                 </p>
 
                                 <div>
-                                    <h4>Novo certificado</h4><br>
+                                    <h4>Novo vídeo</h4><br>
                                     <b>Método: POST</b><br>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates/new</a>
-                                    <p>Para se cadastrar um novo certificado é necessário informar os seguintes dados: </p>
+                                    <b>URL:</b> <a href="#!"
+                                        class="text-decoration-none">https://hackjoy-api.herokuapp.com/courses/new</a>
+                                    <p>Para se cadastrar um novo vídeo é necessário informar os dados para a entidade
+                                        <i>content</i> e os dados para a entidade <i>video</i>: </p>
                                     <ul>
-                                        <li><b>name:</b> Nome do certificado.</li>
-                                        <li><b>image:</b> Imagem de fundo do certificado.</li>
-                                        <li><b>phrase:</b> Frase que será inserida dentro do certificado.</li>
+                                        <li>content</li>
+                                        <ul>
+                                            <li><b>id_course:</b> Id do curso no qual se está cadastrando os conteúdos.
+                                            </li>
+                                            <li><b>name:</b> Nome do conteúdo.</li>
+                                            <li><b>sequence_number:</b> Ordem na qual o conteúdo é mostrado na tela.
+                                            </li>
+                                            <li><b>entity:</b> Tipo de conteúdo, no caso deve ser informado o tipo
+                                                "Video".</li>
+                                        </ul>
+                                        <li>video</li>
+                                        <ul>
+                                            <li><b>name:</b> Nome do vídeo.</li>
+                                            <li><b>link:</b> Link do vídeo.</li>
+                                            <li><b>workload:</b> Carga horária do vídeo.</li>
+                                        </ul>
                                     </ul>
                                     <p>Exemplo: </p>
 
                                     <p>
-                                        <img src="images/novo_certificate.png">
+                                        <img src="images/novo_video.png">
                                     </p>
                                 </div>
 
                                 <div>
-                                    <h4>Listar</h4>
-                                    <b>Método: GET</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates</a>
-                                    <p>Retorna um JSON com todos os certificados cadastrados</p>
-                                </div>
-
-                                <div>
-                                    <h4>Encontrar <i>certificate</i> por id</h4>
-                                    <b>Método: GET</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates/{id}</a>
-                                    <p>Retorna o certificado que possui o id informado por parâmetro.</p>
-                                </div>
-
-                                <div>
-                                    <h4>Atualizar certificado por id</h4>
+                                    <h4>Atualizar vídeo por id</h4>
                                     <b>Método: PUT</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates/{id}</a>
-                                    <p>Para se atualizar um certificado é necessário informar os seguintes dados: </p>
+                                    <b>URL:</b> <a href="#!"
+                                        class="text-decoration-none">https://hackjoy-api.herokuapp.com/videos/{id}</a>
+                                    <p>Para se atualizar um vídeo é necessário informar os seguintes dados: </p>
                                     <ul>
-                                        <li><b>name:</b> Nome do certificado.</li>
-                                        <li><b>image:</b> Imagem de fundo do certificado.</li>
-                                        <li><b>phrase:</b> Frase que será inserida dentro do certificado.</li>
+                                        <li>content</li>
+                                        <ul>
+                                            <li><b>name:</b> Nome do conteúdo.</li>
+                                            <li><b>sequence_number:</b> Ordem na qual o conteúdo é mostrado na tela.
+                                            </li>
+                                            <li><b>entity:</b> Tipo de conteúdo, no caso deve ser informado o tipo
+                                                "Video".</li>
+                                        </ul>
+                                        <li>video</li>
+                                        <ul>
+                                            <li><b>id:</b> Id do vídeo.</li>
+                                            <li><b>name:</b> Nome do vídeo.</li>
+                                            <li><b>link:</b> Link do vídeo.</li>
+                                            <li><b>workload:</b> Carga horária do vídeo.</li>
+                                        </ul>
                                     </ul>
                                     <p>Exemplo:</p>
                                 </div>
 
                                 <p>
-                                    <img src="images/exemplo_put_certificate.png" />
+                                    <img src="images/exemplo_put_video.png" />
                                 </p>
                             </div>
                         </div>
@@ -167,16 +190,23 @@
     </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
 
     <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
 
     <!-- jQuery Custom Scroller CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!-- Bootstrap JS files CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
     <!-- My JS files -->
     <script src="script/script.js" defer></script>

@@ -95,68 +95,25 @@
                     <div class="shadow-sm p-3 mb-5 bg-white rounded">
                         <div class="container-fluid">
                             <div>
-                                <h1>Entidade Certificados (Certificates)</h1>
+                                <h1>Entidade Conteúdo (Content)</h1>
 
                                 <p>
-                                    Esta entidade irá representar os certificados cadastrados no sistema.
+                                    Esta entidade irá representar os conteúdos dos cursos.
+                                </p>
+
+                                <p>
+                                    Um curso possui N conteúdos, esses conteúdos são representados pela entidade Content. 
+                                    Porém, não cadastramos os dados dos conteúdos diretamente em Content, apenas o tipo do conteúdo, no qual está indicado no campo <i>entity</i>.
                                 </p>
 
                                 <p class="text-center">
-                                    <img src="images/entidade_certificate.png">
+                                    <img src="images/entidade_content.png">
                                 </p>
 
                                 <h3>Operações HTTP</h3>
 
                                 <p>
-                                    A URL para acessar o recurso (entidade) <i>certificate</i> é: <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates</a>
-                                </p>
-
-                                <div>
-                                    <h4>Novo certificado</h4><br>
-                                    <b>Método: POST</b><br>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates/new</a>
-                                    <p>Para se cadastrar um novo certificado é necessário informar os seguintes dados: </p>
-                                    <ul>
-                                        <li><b>name:</b> Nome do certificado.</li>
-                                        <li><b>image:</b> Imagem de fundo do certificado.</li>
-                                        <li><b>phrase:</b> Frase que será inserida dentro do certificado.</li>
-                                    </ul>
-                                    <p>Exemplo: </p>
-
-                                    <p>
-                                        <img src="images/novo_certificate.png">
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <h4>Listar</h4>
-                                    <b>Método: GET</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates</a>
-                                    <p>Retorna um JSON com todos os certificados cadastrados</p>
-                                </div>
-
-                                <div>
-                                    <h4>Encontrar <i>certificate</i> por id</h4>
-                                    <b>Método: GET</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates/{id}</a>
-                                    <p>Retorna o certificado que possui o id informado por parâmetro.</p>
-                                </div>
-
-                                <div>
-                                    <h4>Atualizar certificado por id</h4>
-                                    <b>Método: PUT</b>
-                                    <b>URL:</b> <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/certificates/{id}</a>
-                                    <p>Para se atualizar um certificado é necessário informar os seguintes dados: </p>
-                                    <ul>
-                                        <li><b>name:</b> Nome do certificado.</li>
-                                        <li><b>image:</b> Imagem de fundo do certificado.</li>
-                                        <li><b>phrase:</b> Frase que será inserida dentro do certificado.</li>
-                                    </ul>
-                                    <p>Exemplo:</p>
-                                </div>
-
-                                <p>
-                                    <img src="images/exemplo_put_certificate.png" />
+                                    A URL para acessar o recurso (entidade) <i>content</i> é: <a href="#!" class="text-decoration-none">https://hackjoy-api.herokuapp.com/courses</a>
                                 </p>
                             </div>
                         </div>
